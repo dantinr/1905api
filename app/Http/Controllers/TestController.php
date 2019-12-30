@@ -67,7 +67,7 @@ class TestController extends Controller
         $str = rtrim($str,'&');
         echo 'str: '.$str;echo '</br>';echo '<hr>';
         // 3 计算签名
-        $key = storage_path('keys/ali_priv');
+        $key = storage_path('keys/app_priv');
         $priKey = file_get_contents($key);
         $res = openssl_get_privatekey($priKey);
         var_dump($res);echo '</br>';
@@ -88,36 +88,4 @@ class TestController extends Controller
 
     }
 
-
-    /**
-     * 簽名
-     * @param $data
-     * @param string $signType
-     * @return string
-     */
-    protected function sign($data, $signType = "RSA2") {
-        if($this->checkEmpty($this->rsaPrivateKeyFilePath)){
-            $priKey=$this->rsaPrivateKey;
-            $res = "-----BEGIN RSA PRIVATE KEY-----\n" .
-                wordwrap($priKey, 64, "\n", true) .
-                "\n-----END RSA PRIVATE KEY-----";
-        }else {
-            $priKey = file_get_contents($this->rsaPrivateKeyFilePath);
-            $res = openssl_get_privatekey($priKey);
-        }
-
-        ($res) or die('您使用的私钥格式错误，请检查RSA私钥配置');
-
-        if ("RSA2" == $signType) {
-            openssl_sign($data, $sign, $res, OPENSSL_ALGO_SHA256);
-        } else {
-            openssl_sign($data, $sign, $res);
-        }
-
-        if(!$this->checkEmpty($this->rsaPrivateKeyFilePath)){
-            openssl_free_key($res);
-        }
-        $sign = base64_encode($sign);
-        return $sign;
-    }
 }
