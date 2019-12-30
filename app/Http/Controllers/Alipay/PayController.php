@@ -16,7 +16,7 @@ class PayController extends Controller
     {
         //$data = file_get_contents("php://input");
         $data = json_encode($_POST);
-        $log = date('Y-m-d H:i:s') . ' >>> ' .$data;
+        $log = date('Y-m-d H:i:s') . ' >>> ' .$data . "\n\n";
         file_put_contents('alipay.log',$log,FILE_APPEND);
     }
 
