@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/test/pay','TestController@alipay');
+
+Route::get('/alipay/notify','TestController@alipay');
