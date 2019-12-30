@@ -18,4 +18,4 @@ Route::get('/', function () {
 
 Route::get('/test/pay','TestController@alipay');
 
-Route::get('/alipay/notify','TestController@alipay');
+Route::post('/test/alipay/notify','Alipay\PayController@notify');

@@ -21,7 +21,7 @@ class TestController extends Controller
         $sign = '';
         $timestamp = date('Y-m-d H:i:s');
         $version = '1.0';
-        $notify_url = 'http://1905api.comcto.com/alipay/notify';        // 支付宝异步通知地址
+        $notify_url = 'http://1905api.comcto.com/test/alipay/notify';        // 支付宝异步通知地址
         $biz_content = '';
 
         // 请求参数
