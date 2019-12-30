@@ -47,7 +47,7 @@ class PayController extends Controller
         $pubKey = file_get_contents(storage_path('keys/ali_pub'));
         //转换为openssl格式密钥
         $res = openssl_get_publickey($pubKey);
-        $result = (bool)openssl_verify($data, $sign, $res, OPENSSL_ALGO_SHA256);
+        $result = (bool)openssl_verify($str, $sign, $res, OPENSSL_ALGO_SHA256);
         //释放资源
         openssl_free_key($res);
         if($result){
