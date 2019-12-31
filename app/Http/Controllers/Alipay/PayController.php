@@ -15,6 +15,7 @@ class PayController extends Controller
      */
     public function notify()
     {
+        // 1 接收 支付宝的POST数据
         //$data1 = file_get_contents("php://input");
         $data2 = json_encode($_POST);
         //$log1 = date('Y-m-d H:i:s') . ' >>> ' .$data1 . "\n";
@@ -28,6 +29,7 @@ class PayController extends Controller
 
         //echo '<pre>';print_r($data);echo '</pre>';
         $d = [];
+        // 2 url_decode
         foreach($data as $k=>$v){
             $d[$k] = urldecode($v);
         }
@@ -39,12 +41,14 @@ class PayController extends Controller
             $str .= $k . '=' . $v . '&';
         }
 
+
         //带签名字符串
         $str = rtrim($str,'&');
         //读取公钥文件
         $pubKey = file_get_contents(storage_path('keys/ali_pub'));
         //转换为openssl格式密钥
         $res = openssl_get_publickey($pubKey);
+        // 验证签名
         $result = (bool)openssl_verify($str, $sign, $res, OPENSSL_ALGO_SHA256);
         //释放资源
         openssl_free_key($res);
@@ -55,6 +59,8 @@ class PayController extends Controller
             $log = date('Y-m-d H:i:s') . ' >>> 验签失败 0' . "\n\n";
             file_put_contents("logs/alipay.log",$log,FILE_APPEND);
         }
+
+        echo 'success';
     }
 
     /**

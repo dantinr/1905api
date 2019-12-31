@@ -73,7 +73,7 @@ class TestController extends Controller
         $priKey = file_get_contents($key);
         $res = openssl_get_privatekey($priKey);
         //var_dump($res);echo '</br>';
-        openssl_sign($str, $sign, $res, OPENSSL_ALGO_SHA256);
+        openssl_sign($str, $sign, $res, OPENSSL_ALGO_SHA256);       //计算签名
         $sign = base64_encode($sign);
         $param['sign'] = $sign;
 
