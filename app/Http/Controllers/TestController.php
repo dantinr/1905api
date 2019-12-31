@@ -11,7 +11,7 @@ class TestController extends Controller
     public function alipay()
     {
 
-        $ali_gateway = 'https://openapi.alipaydev.com/gateway.do';
+        $ali_gateway = 'https://openapi.alipaydev.com/gateway.do';  //支付网关
 
         // 公共请求参数
         $appid = '2016092500593666';
@@ -51,10 +51,12 @@ class TestController extends Controller
             'biz_content'   => json_encode($request_param)
         ];
 
-        echo '<pre>';print_r($param);echo '</pre>';
+        //echo '<pre>';print_r($param);echo '</pre>';
+
         // 字典序排序
         ksort($param);
-        echo '<pre>';print_r($param);echo '</pre>';
+        //echo '<pre>';print_r($param);echo '</pre>';
+
         // 2 拼接 key1=value1&key2=value2...
         $str = "";
         foreach($param as $k=>$v)
@@ -62,15 +64,15 @@ class TestController extends Controller
             $str .= $k . '=' . $v . '&';
         }
 
-        echo 'str: '.$str;echo '</br>';
+        //echo 'str: '.$str;echo '</br>';
 
         $str = rtrim($str,'&');
-        echo 'str: '.$str;echo '</br>';echo '<hr>';
-        // 3 计算签名
+        //echo 'str: '.$str;echo '</br>';echo '<hr>';
+        // 3 计算签名   https://docs.open.alipay.com/291/106118
         $key = storage_path('keys/app_priv');
         $priKey = file_get_contents($key);
         $res = openssl_get_privatekey($priKey);
-        var_dump($res);echo '</br>';
+        //var_dump($res);echo '</br>';
         openssl_sign($str, $sign, $res, OPENSSL_ALGO_SHA256);
         $sign = base64_encode($sign);
         $param['sign'] = $sign;
