@@ -20,6 +20,9 @@ Route::get('/test/pay','TestController@alipay');        //去支付
 Route::get('/goods','TestController@goods');
 Route::get('/goods2','TestController@goods2');
 Route::get('/test/grab','TestController@grab');
+Route::get('/test/ascii','TestController@ascii');
+Route::get('/test/dec','TestController@dec');
+Route::get('/test/md1','TestController@md1');
 
 
 Route::get('/test/alipay/return','Alipay\PayController@aliReturn');

@@ -159,4 +159,62 @@ class TestController extends Controller
 
     }
 
+    public function ascii()
+    {
+        $char = 'Hello World';
+        $length = strlen($char);
+        echo $length;echo '</br>';
+
+        $pass = "";
+        for($i=0;$i<$length;$i++)
+        {
+
+            echo $char[$i] . '>>> ' . ord($char[$i]);echo '</br>';
+            $ord = ord($char[$i]) + 3;
+            $chr = chr($ord);
+            echo $char[$i] . '>>> ' . $ord . '>>>' . $chr;echo '<hr>';
+            $pass .= $chr;
+
+        }
+        echo '</br>';
+        echo $pass;
+
+    }
+
+    //解密
+    public function dec()
+    {
+        $enc = 'Khoor#Zruog';
+        echo "密文： ".$enc;echo '<hr>';
+        $length = strlen($enc);
+
+
+        $str = "";
+        for($i=0;$i<$length;$i++)
+        {
+            $ord = ord($enc[$i]) - 3;
+            $chr = chr($ord);
+            echo $ord . '>>> ' . $chr ;echo '</br>';
+            $str .= $chr;
+        }
+
+        echo "解密： ".$str;
+    }
+
+    public function md1()
+    {
+        echo base64_decode("VGhpcyBpcyBhbiBlbmNvZGVkIHN0cmluZw==");die;
+        echo md5($_GET['p']);die;
+        echo md5('123456abc');die;
+        $str1 = "Hello World";
+        echo $str1;echo "</br>";
+        echo md5($str1);
+        echo "<hr>";
+
+        $str2 = "Hello World Hello World sdlkfjslkdjflskdjfslkfdj";
+        echo $str2;echo "</br>";
+        echo md5($str2);
+    }
+
+
 }
