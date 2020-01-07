@@ -28,13 +28,12 @@ class IndexController extends Controller
      */
     public function addSSHKey2()
     {
-
-
         $key = trim($_POST['sshkey']);
-
         $uid = Auth::id();
+        $user_name = Auth::user()->name;
         $data = [
             'uid'       => $uid,
+            'name'      => $user_name,
             'pubkey'    => trim($key)
         ];
 
