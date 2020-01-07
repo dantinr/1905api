@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/test/pay','TestController@alipay');        //去支付
 Route::get('/goods','TestController@goods');
@@ -42,6 +44,15 @@ Route::post('/test/curl2','Test\CurlController@curl2');
 Route::post('/test/curl3','Test\CurlController@curl3');
 Route::post('/test/curl4','Test\CurlController@curl4');
 
-Auth::routes();
+//
+Route::get('/test/rsa1','TestController@rsa1');
 
-Route::get('/home', 'HomeController@index')->name('home');
+// 用户管理
+Route::get('/user/addkey','User\IndexController@addSSHKey1');
+Route::post('/user/addkey','User\IndexController@addSSHKey2');
+
+//解密数据
+Route::get('/user/decrypt/data','User\IndexController@decrypt1');
+Route::post('/user/decrypt/data','User\IndexController@decrypt2');
+
+

@@ -15,6 +15,8 @@
                     @endif
 
                     You are logged in!
+                        <br>
+                        <a href="/user/addkey">添加公钥</a>
                 </div>
             </div>
         </div>

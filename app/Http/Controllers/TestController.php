@@ -217,4 +217,11 @@ class TestController extends Controller
     }
 
 
+    public function rsa1()
+    {
+        echo "xxxxx";echo '<hr>';
+        echo '<pre>';print_r($_GET);echo '</pre>';
+    }
+
+
 }

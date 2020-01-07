@@ -4,7 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UserModel extends Model
+class UserPubKeyModel extends Model
 {
-    public $table = 'users';
+    public $table = 'p_pubkeys';
 }
