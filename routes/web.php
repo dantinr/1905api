@@ -41,3 +41,7 @@ Route::get('/test/curl1','Test\CurlController@curl1');
 Route::post('/test/curl2','Test\CurlController@curl2');
 Route::post('/test/curl3','Test\CurlController@curl3');
 Route::post('/test/curl4','Test\CurlController@curl4');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
