@@ -35,3 +35,9 @@ Route::get('/api/test','Api\TestController@test');
 Route::post('/api/user/reg','Api\TestController@reg');          //用户注册
 Route::post('/api/user/login','Api\TestController@login');      //用户登录
 Route::get('/api/user/list','Api\TestController@userList')->middleware('filter');      //用户列表
+
+//curl测试
+Route::get('/test/curl1','Test\CurlController@curl1');
+Route::post('/test/curl2','Test\CurlController@curl2');
+Route::post('/test/curl3','Test\CurlController@curl3');
+Route::post('/test/curl4','Test\CurlController@curl4');
