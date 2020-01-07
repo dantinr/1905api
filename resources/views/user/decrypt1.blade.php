@@ -11,6 +11,7 @@
 
 <form action="/user/decrypt/data" method="post">
     {{csrf_field()}}
+    请输入 base64encode后的密文：<br>
     <textarea name="enc_data" id="" cols="80" rows="20">
     </textarea>
     <input type="submit" value="提交">
