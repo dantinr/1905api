@@ -23,8 +23,12 @@ class IndexController extends Controller
         return view('user.addkey');
     }
 
+    /**
+     * 用户添加公钥
+     */
     public function addSSHKey2()
     {
+
 
         $key = trim($_POST['sshkey']);
 
@@ -34,10 +38,18 @@ class IndexController extends Controller
             'pubkey'    => trim($key)
         ];
 
-
+        //如果有记录则删除
+        UserPubKeyModel::where(['uid'=>$uid])->delete();
+        //添加新纪录
         $kid = UserPubKeyModel::insertGetId($data);
+        if($kid){
+            //页面跳转
+            header('Refresh: 3; url=' . env('APP_URL') . '/home');
+            echo "添加成功 公钥内容： >>> </br>" . $key;
+            echo '</br>';
+            echo "页面跳转中...";
+        }
 
-        echo "添加成功 公钥内容：<hr>" . $key;
 
 
     }

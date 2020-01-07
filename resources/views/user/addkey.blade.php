@@ -11,6 +11,7 @@
 
 <form action="/user/addkey" method="post">
     {{csrf_field()}}
+    请添加用户公钥：<br>
     <textarea name="sshkey" id="" cols="80" rows="20">
     </textarea>
     <input type="submit" value="提交">
