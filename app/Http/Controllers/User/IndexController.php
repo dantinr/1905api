@@ -79,4 +79,5 @@ class IndexController extends Controller
         echo "解密数据：". $dec_data;
 
     }
+
 }
