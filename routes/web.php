@@ -63,3 +63,9 @@ Route::get('/test/get/sign1','Sign\IndexController@sign1');
 Route::post('/test/post/sign2','Sign\IndexController@sign2');
 
 
+Route::get('/test/sign2','TestController@sign2');
+
+//自动上线
+Route::post('/gitpull','TestController@gitpull');
+
+

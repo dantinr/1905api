@@ -259,5 +259,54 @@ class TestController extends Controller
         }
     }
 
+    public function sign2()
+    {
+
+        $sign_token = 'abcdefg';        // 两端共有key
+
+        // 接收参数
+        echo '<pre>';print_r($_GET);echo '</pre>';
+
+        // 保存sign
+        $sign1 = $_GET['sign'];
+        echo "发送端的签名： ". $sign1;echo '</br>';
+        unset($_GET['sign']);
+
+        ksort($_GET);
+
+        echo '<pre>';print_r($_GET);echo '</pre>';
+        //拼接待签名字符串
+        $str = "";
+        foreach($_GET as $k=>$v)
+        {
+            $str .= $k. '=' . $v . '&';
+        }
+
+        $str = rtrim($str,'&');
+        echo "待签名字符串： ". $str;
+
+        //计算签名
+        $sign2 = sha1($str . $sign_token);
+        echo '</br>';
+        echo "接收端计算的签名：" . $sign2;
+
+        echo '</br>';
+        if($sign1 === $sign2){
+            echo "验签成功";
+        }else{
+            echo "验签失败";
+        }
+
+    }
+
+    /**
+     * 自动上线函数
+     */
+    public function gitpull()
+    {
+        $cmd = 'cd /www/1905/api && git pull';
+        shell_exec($cmd);
+    }
+
 
 }
