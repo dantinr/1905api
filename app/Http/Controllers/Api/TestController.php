@@ -166,5 +166,43 @@ class TestController extends Controller
     }
 
 
+    public function postman()
+    {
+        echo __METHOD__;
+    }
+
+    public function postman1()
+    {
+        //获取用户标识
+        $token = $_SERVER['HTTP_TOKEN'];
+        // 当前url
+        $request_uri = $_SERVER['REQUEST_URI'];
+
+        $url_hash = md5($token . $request_uri);
+
+
+        //echo 'url_hash: ' .  $url_hash;echo '</br>';
+        $key = 'count:url:'.$url_hash;
+        //echo 'Key: '.$key;echo '</br>';
+
+        //检查 次数是否已经超过限制
+        $count = Redis::get($key);
+        echo "当前接口访问次数为：". $count;echo '</br>';
+
+        if($count >= 5){
+            $time = 10;     // 时间秒
+            echo "请勿频繁请求接口, $time 秒后重试";
+            Redis::expire($key,$time);
+            die;
+        }
+
+
+        // 访问数 +1
+        $count = Redis::incr($key);
+        echo 'count: '.$count;
+
+    }
+
+
 
 }
