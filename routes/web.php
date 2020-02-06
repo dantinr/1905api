@@ -28,6 +28,8 @@ Route::get('/test/md1','TestController@md1');
 Route::get('/test/postman','Api\TestController@postman');
 Route::get('/test/postman1','Api\TestController@postman1')->middleware('filter','check.token');
 
+Route::get('/test/md5','Api\TestController@md5test');
+
 
 Route::get('/test/alipay/return','Alipay\PayController@aliReturn');
 Route::post('/test/alipay/notify','Alipay\PayController@notify');
