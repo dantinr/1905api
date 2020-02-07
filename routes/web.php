@@ -15,6 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//////////////////////////  TEST  //////////////////////////////
+Route::get('/test/sign2','Api\TestController@sign2');
+
+
+
+//////////////////////////  TEST  //////////////////////////////
+
+
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -28,7 +36,7 @@ Route::get('/test/md1','TestController@md1');
 Route::get('/test/postman','Api\TestController@postman');
 Route::get('/test/postman1','Api\TestController@postman1')->middleware('filter','check.token');
 
-Route::get('/test/md5','Api\TestController@md5test');
+
 
 
 Route::get('/test/alipay/return','Alipay\PayController@aliReturn');
@@ -67,8 +75,6 @@ Route::post('/test/post/signonlie','Sign\IndexController@signOnline1');
 Route::get('/test/get/sign1','Sign\IndexController@sign1');
 Route::post('/test/post/sign2','Sign\IndexController@sign2');
 
-
-Route::get('/test/sign2','TestController@sign2');
 
 //自动上线
 Route::post('/gitpull','TestController@gitpull');
